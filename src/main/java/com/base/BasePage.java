@@ -11,16 +11,25 @@ import java.time.Duration;
 public class BasePage {
 
     public static WebDriver driver;
-    private final Duration TIMEOUT = Duration.ofSeconds(10);
+    private final Duration timeout = Duration.ofSeconds(10);
+    private final WebDriverWait wait = new WebDriverWait(driver, timeout);
 
     public WebElement find(By locator){
         waitUntilElementIsVisible(locator);
         return driver.findElement(locator);
     }
 
+    public void click(By locator){
+        waitUntilElementIsClickable(locator);
+        find(locator).click();
+    }
+
     private void waitUntilElementIsVisible(By locator) {
-        WebDriverWait wait = new WebDriverWait(driver, TIMEOUT);
         wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+    }
+
+    private void waitUntilElementIsClickable(By locator) {
+        wait.until(ExpectedConditions.elementToBeClickable(locator));
     }
 
 }
