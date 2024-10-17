@@ -24,12 +24,23 @@ public class BasePage {
         find(locator).click();
     }
 
+    public void sendText(By locator, String text) {
+        WebElement locatedField = find(locator);
+        waitUntilElementCanBeSelected(locator);
+        locatedField.clear();
+        locatedField.sendKeys(text);
+    }
+
     private void waitUntilElementIsVisible(By locator) {
         wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
     private void waitUntilElementIsClickable(By locator) {
         wait.until(ExpectedConditions.elementToBeClickable(locator));
+    }
+
+    private void waitUntilElementCanBeSelected(By locator) {
+        wait.until(ExpectedConditions.elementToBeSelected(locator));
     }
 
 }
