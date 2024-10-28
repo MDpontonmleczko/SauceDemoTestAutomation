@@ -4,7 +4,7 @@ import com.base.BasePage;
 import org.openqa.selenium.By;
 
 public class LoginPage extends BasePage {
-    private final By usernameFieldLocator = By.xpath("//*[@id=\"user-name\"]");
+    private final By usernameFieldLocator = By.cssSelector("#user-name");
     private final By passwordFieldLocator = By.cssSelector("#password");
     private final By loginButtonLocator = By.cssSelector("#login-button");
     private final By loginErrorMessageLocator = By.cssSelector(".login-box h3");
