@@ -10,25 +10,41 @@ import java.time.Duration;
 
 public class BasePage {
 
-    public static WebDriver driver;
+    private static WebDriver driver;
     private final Duration timeout = Duration.ofSeconds(10);
     private final WebDriverWait wait = new WebDriverWait(driver, timeout);
 
-    public WebElement find(By locator){
-        waitUntilElementIsVisible(locator);
-        return driver.findElement(locator);
+    public void setDriver(WebDriver driver) {
+        BasePage.driver = driver;
     }
 
-    public void click(By locator){
+    public void openURL(String url) {
+        driver.get(url);
+    }
+
+    public void click(By locator) {
         waitUntilElementIsClickable(locator);
         find(locator).click();
     }
 
     public void sendText(By locator, String text) {
         WebElement locatedField = find(locator);
-        waitUntilElementCanBeSelected(locator);
         locatedField.clear();
         locatedField.sendKeys(text);
+    }
+
+    public String readText(By locator) {
+        WebElement locatedField = find(locator);
+        return locatedField.getText();
+    }
+
+    public boolean isElementDisplayed(By locator) {
+        return find(locator).isDisplayed();
+    }
+
+    private WebElement find(By locator) {
+        waitUntilElementIsVisible(locator);
+        return driver.findElement(locator);
     }
 
     private void waitUntilElementIsVisible(By locator) {

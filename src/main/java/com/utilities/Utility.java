@@ -9,7 +9,7 @@ import org.openqa.selenium.WebDriver;
 
 public abstract class Utility {
 
-    public static WebDriver getChromeDriver(){
+    public static WebDriver getChromeDriver() {
         return ChromeDriverManager.getWebDriver();
     }
 

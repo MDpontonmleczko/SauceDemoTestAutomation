@@ -12,7 +12,6 @@ public abstract class ChromeDriverManager {
         if (webDriver == null) {
             webDriver = new ChromeDriver();
         }
-
         return webDriver;
     }
 }
